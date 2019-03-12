@@ -17,7 +17,7 @@ int main()
 		//GetPCCmd函数的功能：从微信端接收一条消息，如果没有任何消息，它会一直等待
 		//第一个参数为电脑ID，不同电脑建议使用不同的ID
 		//第二个参数为接收消息的数组
-		GetPCCmd("dj", cmd);
+		GetPCCmd("ftl", cmd);
 
 		printf("%s\n", cmd);
 
@@ -65,6 +65,26 @@ int main()
 			//打开记事本
 			WinExec("notepad", 1);
 		}
+			else if(strstr(cmd, "播放"))
+		{
+			//播放背景音乐
+			mciSendString("open bg.mp3 alias s",NULL,0,NULL);//打开指定音乐并指定别名
+	        mciSendString("play s repeat",NULL,0,NULL);//重复播放
+		}
+				else if(strstr(cmd, "暂停"))
+		{
+			//播放背景音乐
+	        mciSendString("pause s",NULL,0,NULL);//重复播放
+		}
+						else if(strstr(cmd, "停止"))
+		{
+			//关闭背景音乐
+	        mciSendString("close s",NULL,0,NULL);
+		}
+
+
+
+
 
 
 		Sleep(3000);  //延时3秒，避免接收到重复的消息，因为消息会在服务器上暂存3秒
